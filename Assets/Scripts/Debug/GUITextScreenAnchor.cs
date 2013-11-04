@@ -14,7 +14,7 @@ public class GUITextScreenAnchor: MonoBehaviour {
 		LTOP,
 		RTOP,
 	}
-	public	Camera drawCamera;
+	Camera drawCamera;
 	public 	Pos pos;
 
 	void updateScreenPos( float width, float height ) 
@@ -33,6 +33,7 @@ public class GUITextScreenAnchor: MonoBehaviour {
 	}
 	
 	void Start() {
+		drawCamera = GameObject.Find("MainCamera").camera;
 		if ( drawCamera != null ) {
 			updateScreenPos( drawCamera.pixelRect.width, drawCamera.pixelRect.height );
 		}

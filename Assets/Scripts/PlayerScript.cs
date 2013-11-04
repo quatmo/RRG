@@ -4,9 +4,12 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 	
 	#region basic game settings
-	public float jumpSpeed {get; set;}
-	public float gravity {get; set;}
-	public float runningSpeed {get; set;}
+	public float m_jumpSpeed = 8.0f;
+	public float jumpSpeed {get {return m_jumpSpeed;} set{m_jumpSpeed = value;}}
+	public float m_gravity = 20.0f;
+	public float gravity {get {return m_gravity;} set {m_gravity = value;}}
+	public float m_runningSpeed = 4.0f;
+	public float runningSpeed {get {return m_runningSpeed;} set{m_runningSpeed = value;}}
 	#endregion
 	
 	
@@ -18,9 +21,6 @@ public class PlayerScript : MonoBehaviour {
 	private CharacterController controller;
 
 	void Start () {
-		jumpSpeed = 8.0f;
-		gravity = 20.0f;
-		runningSpeed = 4.0f;
 		controller = GetComponent<CharacterController>();
 	}
 	

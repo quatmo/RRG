@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 143: {fileID: 14300000}
   m_Layer: 8
-  m_Name: Rabit
+  m_Name: Rabbit
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 4
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
