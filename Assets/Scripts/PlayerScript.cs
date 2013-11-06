@@ -19,13 +19,29 @@ public class PlayerScript : MonoBehaviour {
 
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
+	private GameObject rabbit;
+	
+	private int LAYER_Player = 8;
+	private int LAYER_PlayerOnBlock = 9;
+	private int LAYER_Block = 10;
 
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		StartCoroutine("RunFrameAnimation");
+		rabbit = GameObject.Find("Rabbit");
 	}
 	
 	void FixedUpdate() {
+		if(controller.velocity.y < 0 && rabbit.layer == LAYER_Player) {
+			rabbit.layer = LAYER_PlayerOnBlock;
+		}
+		RaycastHit hit;
+		if(Physics.Raycast(rabbit.transform.position, Vector3.down, out hit, 2)) {
+			if(hit.transform.gameObject.layer == LAYER_Block) {
+			}else{
+				rabbit.layer = LAYER_Player;
+			}
+		}
 		if(controller.isGrounded) {
 			if(Input.GetButtonDown("Jump")){
 				moveDirection.y = jumpSpeed;
