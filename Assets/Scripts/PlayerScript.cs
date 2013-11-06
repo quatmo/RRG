@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour {
 
 	void Start () {
 		controller = GetComponent<CharacterController>();
+		StartCoroutine("RunFrameAnimation");
 	}
 	
 	void FixedUpdate() {
@@ -49,5 +50,16 @@ public class PlayerScript : MonoBehaviour {
 			Destroy(other.gameObject);
 		}
 	}
-	
+
+	private IEnumerator RunFrameAnimation(){
+		float runFrameSpeed = 0.2f;
+		float[,] offsets = new float[,] {{0.333f,0.0f},{0.000f,0.0f},{0.333f,0.0f},{0.667f,0.0f}};
+		while(true){
+			for (int i=0;i<4;i++) {
+				Vector2 offsetxy = new Vector2(offsets[i,0],offsets[i,1]);
+				renderer.material.mainTextureOffset = offsetxy;
+				yield return new WaitForSeconds(runFrameSpeed);
+			}
+		}
+	}		
 }
