@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
 	private GameObject rabbit;
+	private GameMode newGame;
 	
 	private int LAYER_Player = 8;
 	private int LAYER_PlayerOnBlock = 9;
@@ -29,6 +30,7 @@ public class PlayerScript : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		StartCoroutine("RunFrameAnimation");
 		rabbit = GameObject.Find("Rabbit");
+		newGame = GameObject.Find("GameMode").GetComponent<GameMode>();
 	}
 	
 	void FixedUpdate() {
@@ -60,10 +62,14 @@ public class PlayerScript : MonoBehaviour {
 			}
 		}
 	}
+	
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Item") {
 			Destroy(other.gameObject);
+		} else if (other.gameObject.tag == "Enemy") {
+			Destroy(other.gameObject);
+			newGame.SendMessage("Die");
 		}
 	}
 
@@ -78,4 +84,5 @@ public class PlayerScript : MonoBehaviour {
 			}
 		}
 	}		
+	
 }

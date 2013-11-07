@@ -15,7 +15,6 @@ public class DebugMode : MonoBehaviour {
 
 	void Start () {
 		playerScript = GameObject.Find("Rabbit").GetComponent<PlayerScript>();
-		Debug.Log(playerScript.gravity);
 		
 		if(playerScript.isDebugMode){
 			mainCamera = GameObject.Find("MainCamera").camera;

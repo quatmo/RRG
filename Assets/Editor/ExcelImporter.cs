@@ -74,6 +74,20 @@ public class ExcelImporter : AssetPostprocessor {
 									stageBlockSet.Add(stageBlock);
 									CreateOrUpdateObject(stageBlock);
 								}
+								if(cell.NumericCellValue == 3){
+									StageBlock stageBlock = new StageBlock();
+									stageBlock.name = "Block";
+									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+									stageBlockSet.Add(stageBlock);
+									CreateOrUpdateObject(stageBlock);
+								}
+								if(cell.NumericCellValue == 4){
+									StageBlock stageBlock = new StageBlock();
+									stageBlock.name = "Enemy1";
+									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+									stageBlockSet.Add(stageBlock);
+									CreateOrUpdateObject(stageBlock);
+								}
 							}
 						}
 					}
@@ -105,7 +119,8 @@ public class ExcelImporter : AssetPostprocessor {
 			objRoot = GameObject.Find("Floor");
 		}else if(objStageBlock.gameObject.tag == "Item") {
 			objRoot = GameObject.Find("Items");
-		}else{
+		}else if(objStageBlock.gameObject.tag == "Enemy"){
+			objRoot = GameObject.Find("Enemies");
 		}
 		
 		if(objStageBlock == null)
