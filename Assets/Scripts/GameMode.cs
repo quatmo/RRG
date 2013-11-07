@@ -44,6 +44,7 @@ public class GameMode : MonoBehaviour {
 		if(gameOver) {
 			if(GUI.Button(new Rect(140,200,100,30), "RETRY")) {
 					Application.LoadLevel("Main");
+					Time.timeScale = 1;
 			}
 		}
 	}

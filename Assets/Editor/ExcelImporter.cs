@@ -65,28 +65,28 @@ public class ExcelImporter : AssetPostprocessor {
 									stageBlock.name = "Normal";
 									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
 									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx);
 								}
 								if(cell.NumericCellValue == 2){
 									StageBlock stageBlock = new StageBlock();
 									stageBlock.name = "Item1";
 									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
 									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx);
 								}
 								if(cell.NumericCellValue == 3){
 									StageBlock stageBlock = new StageBlock();
 									stageBlock.name = "Block";
 									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
 									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx);
 								}
 								if(cell.NumericCellValue == 4){
 									StageBlock stageBlock = new StageBlock();
 									stageBlock.name = "Enemy1";
 									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
 									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx);
 								}
 							}
 						}
@@ -107,7 +107,7 @@ public class ExcelImporter : AssetPostprocessor {
 		}
 	}
 	
-	static private void CreateOrUpdateObject(StageBlock _data)
+	static private void CreateOrUpdateObject(StageBlock _data, int cellIdx)
 	{
 		if(_data == null){ return; }
 		
@@ -117,6 +117,11 @@ public class ExcelImporter : AssetPostprocessor {
 		GameObject objStageBlock = (GameObject)Object.Instantiate(Resources.Load("Prefabs/"+_data.name));
 		if(objStageBlock.gameObject.tag == "Block") {
 			objRoot = GameObject.Find("Floor");
+			if(cellIdx % 2 == 0) {
+				objStageBlock.renderer.material.mainTextureOffset = new Vector2(0.5f,0);
+			}else{
+				objStageBlock.renderer.material.mainTextureOffset = new Vector2(0,0);
+			}
 		}else if(objStageBlock.gameObject.tag == "Item") {
 			objRoot = GameObject.Find("Items");
 		}else if(objStageBlock.gameObject.tag == "Enemy"){

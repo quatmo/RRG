@@ -8,10 +8,13 @@ public class PlayerScript : MonoBehaviour {
 	public float jumpSpeed {get {return m_jumpSpeed;} set{m_jumpSpeed = value;}}
 	public float m_gravity = 20.0f;
 	public float gravity {get {return m_gravity;} set {m_gravity = value;}}
-	public float m_runningSpeed = 4.0f;
+	public float m_runningSpeed = 5.0f;
 	public float runningSpeed {get {return m_runningSpeed;} set{m_runningSpeed = value;}}
 	#endregion
 	
+	#region sound
+	SoundManager sm;
+	#endregion
 	
 	#region for debug
 	public bool isDebugMode = false;
@@ -31,8 +34,9 @@ public class PlayerScript : MonoBehaviour {
 		StartCoroutine("RunFrameAnimation");
 		rabbit = GameObject.Find("Rabbit");
 		newGame = GameObject.Find("GameMode").GetComponent<GameMode>();
+		sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+		sm.PlayBGM();
 	}
-	
 	void FixedUpdate() {
 		if(controller.velocity.y < 0 && rabbit.layer == LAYER_Player) {
 			rabbit.layer = LAYER_PlayerOnBlock;
@@ -47,6 +51,7 @@ public class PlayerScript : MonoBehaviour {
 		if(controller.isGrounded) {
 			if(Input.GetButtonDown("Jump")){
 				moveDirection.y = jumpSpeed;
+				sm.PlayJump();
 			}
 		}else{
 			moveDirection.y -= gravity * Time.deltaTime;
@@ -66,8 +71,10 @@ public class PlayerScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Item") {
+			sm.PlayGetItem();
 			Destroy(other.gameObject);
 		} else if (other.gameObject.tag == "Enemy") {
+			sm.PlayDamage();
 			Destroy(other.gameObject);
 			newGame.SendMessage("Die");
 		}
