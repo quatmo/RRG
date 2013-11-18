@@ -7,113 +7,113 @@ using System.Collections;
  * */
 
 public class DebugMode : MonoBehaviour {
-	private bool isVisible = false;
-	private float zoom = 4.0f;
-	Camera mainCamera;
-	PlayerScript playerScript;
-	
-
-	void Start () {
-		playerScript = GameObject.Find("Rabbit").GetComponent<PlayerScript>();
-		
-		if(playerScript.isDebugMode){
-			mainCamera = GameObject.Find("MainCamera").camera;
-			if(DebugManager.isInit) {
-				LoadManager();
-				DebugManager.isInit = false;
-			}else{
-				SaveManager();
-			}
-		}
-	}
-	
-	void Update () {
-		if(playerScript.isDebugMode){
-			guiText.text = EditText();
-		}
-	}
-	
-	/**
-	 * @return string - status about basic game settings
-	 * */
-	string EditText () {
-		return "speed : " + playerScript.runningSpeed + "\n" +
-						"gravity : " + playerScript.gravity + "\n" +
-						"jumpSpeed : " + playerScript.jumpSpeed + "\n" +
-						"zoom : " + zoom;
-		
-	}
-	
-	void LoadManager(){
-		playerScript.runningSpeed = DebugManager.runningSpeed;
-		playerScript.jumpSpeed = DebugManager.jumpSpeed;
-		playerScript.gravity = DebugManager.gravity;
-		mainCamera.orthographicSize = DebugManager.zoom;
-	}
-	void SaveManager(){
-		DebugManager.runningSpeed = playerScript.runningSpeed;
-		DebugManager.jumpSpeed = playerScript.jumpSpeed;
-		DebugManager.gravity = playerScript.gravity;
-		DebugManager.zoom = mainCamera.orthographicSize;
-	}
-	
-	#region GUI method
-	void OnGUI(){
-		if(playerScript.isDebugMode){
-			
-			if(isVisible) {
-				GUI.Box(new Rect(10,10,300,200), "");
-				GUI.Label(new Rect(20,20,70,20), "SPEED");
-				if(GUI.Button(new Rect(100,20,40,20), "UP")){
-					DebugManager.runningSpeed += 0.5f;
-				}
-				if(GUI.Button(new Rect(150,20,80,20), "DOWN")){
-					DebugManager.runningSpeed -= 0.5f;
-				}
-			
-				GUI.Label(new Rect(20,40,70,20), "JUMP");
-				if(GUI.Button(new Rect(100,40,40,20), "UP")){
-					DebugManager.jumpSpeed += 0.5f;
-				}
-				
-				if(GUI.Button(new Rect(150,40,80,20), "DOWN")){
-					DebugManager.jumpSpeed -= 0.5f;
-					
-				}
-			
-				GUI.Label(new Rect(20,60,70,20), "GRAVITY");
-				if(GUI.Button(new Rect(100,60,40,20), "UP")){
-					DebugManager.gravity += 0.5f;
-					
-				}
-				if(GUI.Button(new Rect(150,60,80,20), "DOWN")){
-					DebugManager.gravity -= 0.5f;
-				
-				}
-				GUI.Label(new Rect(20,80,80,20), "CAMERA");
-				DebugManager.zoom = GUI.HorizontalSlider(new Rect(80,80,200,20),DebugManager.zoom,2.0f,10.0f );
-			
-				if(GUI.Button(new Rect(20,180, 80,20), "RESET")){
-					DebugManager.runningSpeed = 4.0f;
-					DebugManager.gravity = 20.0f;
-					DebugManager.jumpSpeed = 8.0f;
-					DebugManager.zoom = 4.0f;
-				}
-				if(GUI.Button(new Rect(110,180,80,20), "RESTART")){
-					DebugManager.isInit = true;
-					Application.LoadLevel("Main");
-				}
-				if(GUI.Button(new Rect(200,180,100,20), "EXIT")){
-					isVisible = false;
-				}
-			}else{
-				if(GUI.Button(new Rect(100,0,80,30), "DEBUG")){
-					isVisible = true;
-				}
-			
-			}
-			LoadManager();
-		}
-	}
-	#endregion
+//	private bool isVisible = false;
+//	private float zoom = 4.0f;
+//	Camera mainCamera;
+//	PlayerScript playerScript;
+//	
+//
+//	void Start () {
+//		playerScript = GameObject.Find("Rabbit").GetComponent<PlayerScript>();
+//		
+//		if(playerScript.isDebugMode){
+//			mainCamera = GameObject.Find("MainCamera").camera;
+//			if(DebugManager.isInit) {
+//				LoadManager();
+//				DebugManager.isInit = false;
+//			}else{
+//				SaveManager();
+//			}
+//		}
+//	}
+//	
+//	void Update () {
+//		if(playerScript.isDebugMode){
+//			guiText.text = EditText();
+//		}
+//	}
+//	
+//	/**
+//	 * @return string - status about basic game settings
+//	 * */
+//	string EditText () {
+//		return "speed : " + playerScript.runningSpeed + "\n" +
+//						"gravity : " + playerScript.gravity + "\n" +
+//						"jumpSpeed : " + playerScript.jumpSpeed + "\n" +
+//						"zoom : " + zoom;
+//		
+//	}
+//	
+//	void LoadManager(){
+//		playerScript.runningSpeed = DebugManager.runningSpeed;
+//		playerScript.jumpSpeed = DebugManager.jumpSpeed;
+//		playerScript.gravity = DebugManager.gravity;
+//		mainCamera.orthographicSize = DebugManager.zoom;
+//	}
+//	void SaveManager(){
+//		DebugManager.runningSpeed = playerScript.runningSpeed;
+//		DebugManager.jumpSpeed = playerScript.jumpSpeed;
+//		DebugManager.gravity = playerScript.gravity;
+//		DebugManager.zoom = mainCamera.orthographicSize;
+//	}
+//	
+//	#region GUI method
+//	void OnGUI(){
+//		if(playerScript.isDebugMode){
+//			
+//			if(isVisible) {
+//				GUI.Box(new Rect(10,10,300,200), "");
+//				GUI.Label(new Rect(20,20,70,20), "SPEED");
+//				if(GUI.Button(new Rect(100,20,40,20), "UP")){
+//					DebugManager.runningSpeed += 0.5f;
+//				}
+//				if(GUI.Button(new Rect(150,20,80,20), "DOWN")){
+//					DebugManager.runningSpeed -= 0.5f;
+//				}
+//			
+//				GUI.Label(new Rect(20,40,70,20), "JUMP");
+//				if(GUI.Button(new Rect(100,40,40,20), "UP")){
+//					DebugManager.jumpSpeed += 0.5f;
+//				}
+//				
+//				if(GUI.Button(new Rect(150,40,80,20), "DOWN")){
+//					DebugManager.jumpSpeed -= 0.5f;
+//					
+//				}
+//			
+//				GUI.Label(new Rect(20,60,70,20), "GRAVITY");
+//				if(GUI.Button(new Rect(100,60,40,20), "UP")){
+//					DebugManager.gravity += 0.5f;
+//					
+//				}
+//				if(GUI.Button(new Rect(150,60,80,20), "DOWN")){
+//					DebugManager.gravity -= 0.5f;
+//				
+//				}
+//				GUI.Label(new Rect(20,80,80,20), "CAMERA");
+//				DebugManager.zoom = GUI.HorizontalSlider(new Rect(80,80,200,20),DebugManager.zoom,2.0f,10.0f );
+//			
+//				if(GUI.Button(new Rect(20,180, 80,20), "RESET")){
+//					DebugManager.runningSpeed = 4.0f;
+//					DebugManager.gravity = 20.0f;
+//					DebugManager.jumpSpeed = 8.0f;
+//					DebugManager.zoom = 4.0f;
+//				}
+//				if(GUI.Button(new Rect(110,180,80,20), "RESTART")){
+//					DebugManager.isInit = true;
+//					Application.LoadLevel("Main");
+//				}
+//				if(GUI.Button(new Rect(200,180,100,20), "EXIT")){
+//					isVisible = false;
+//				}
+//			}else{
+//				if(GUI.Button(new Rect(100,0,80,30), "DEBUG")){
+//					isVisible = true;
+//				}
+//			
+//			}
+//			LoadManager();
+//		}
+//	}
+//	#endregion
 }

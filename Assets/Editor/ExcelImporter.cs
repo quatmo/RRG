@@ -114,14 +114,12 @@ public class ExcelImporter : AssetPostprocessor {
 		GameObject objRoot = GameObject.Find("GameField");
 		if(objRoot == null){ return; }
 		Debug.Log("Prefabs/"+_data.name);
+		if(cellIdx % 2 == 0 && (_data.name == "Block" || _data.name == "Normal")){
+			 _data.name = _data.name + "2";
+		}
 		GameObject objStageBlock = (GameObject)Object.Instantiate(Resources.Load("Prefabs/"+_data.name));
 		if(objStageBlock.gameObject.tag == "Block") {
 			objRoot = GameObject.Find("Floor");
-			if(cellIdx % 2 == 0) {
-				objStageBlock.renderer.material.mainTextureOffset = new Vector2(0.5f,0);
-			}else{
-				objStageBlock.renderer.material.mainTextureOffset = new Vector2(0,0);
-			}
 		}else if(objStageBlock.gameObject.tag == "Item") {
 			objRoot = GameObject.Find("Items");
 		}else if(objStageBlock.gameObject.tag == "Enemy"){
