@@ -42,8 +42,10 @@ public class GameMode : MonoBehaviour {
 	
 	void OnGUI (){
 		if(gameOver) {
-			if(GUI.Button(new Rect(140,200,100,30), "RETRY")) {
-					Application.LoadLevel("Main");
+			GUI.Label(new Rect(100, 100, 200, 40), "TOUCH to RESTART");
+			if(Input.GetMouseButtonDown(0))
+			{
+					Application.LoadLevel("ModeA");
 					Time.timeScale = 1;
 			}
 		}

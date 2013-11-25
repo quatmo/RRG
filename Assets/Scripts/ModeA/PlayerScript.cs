@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
 	void Awake()
 	{
 		groundCheck = transform.Find("groundCheck");
-//		RunFrameAnimation = GetComponent<Animator>();
+		anim = GetComponent<Animator>();
 	}
 	void Start()
 	{
@@ -52,10 +52,6 @@ public class PlayerScript : MonoBehaviour {
 	void Update()
 	{
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-		if(Input.GetButtonDown("Jump"))
-		{
-			Debug.Log(grounded);
-		}
 		if(Input.GetButtonDown("Jump") && grounded)
 		{
 			jump = true;
@@ -67,8 +63,13 @@ public class PlayerScript : MonoBehaviour {
 
 		if(jump)
 		{
-			    rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			anim.SetTrigger("Jump");
+			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
+		}
+		else
+		{
+			anim.SetBool("Jump", false);
 		}
 		rigidbody2D.velocity = new Vector2(runningSpeed,  rigidbody2D.velocity.y);
 
