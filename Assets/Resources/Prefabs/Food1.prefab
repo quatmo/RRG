@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 212: {fileID: 21200000}
   - 58: {fileID: 5800000}
-  m_Layer: 0
-  m_Name: Enemy1
-  m_TagString: Enemy
+  - 212: {fileID: 21200000}
+  m_Layer: 10
+  m_Name: Food1
+  m_TagString: Food1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 18cce3e3df742438ca540e4fa6f22a19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51a13edf3cb574cbfb21b2b16aa4e2b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

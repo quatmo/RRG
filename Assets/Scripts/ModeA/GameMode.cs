@@ -8,6 +8,7 @@ public class GameMode : MonoBehaviour {
 	private bool gameOver = false;
 
 	void Start () {
+		Time.timeScale = 1;
 		DrawLife ();
 	}
 
@@ -15,8 +16,14 @@ public class GameMode : MonoBehaviour {
 		
 	}
 	
-	void Die () {
+	void Damaged () {
 		life--;
+		DrawLife();
+		checkGameOver();
+	}
+
+	void FalledDie() {
+		life = 0;
 		DrawLife();
 		checkGameOver();
 	}
@@ -46,14 +53,12 @@ public class GameMode : MonoBehaviour {
 			if(Input.GetMouseButtonDown(0))
 			{
 					Application.LoadLevel("ModeA");
-					Time.timeScale = 1;
 			}
 		}
 	}
 	
 	void GameOver () {
 		Time.timeScale = 0;
-		GUITexture.Instantiate(Resources.Load("Prefabs/End"));
 	}
 	
 }

@@ -34,18 +34,21 @@ public class ExcelImporter : AssetPostprocessor {
 						AssetDatabase.CreateAsset(stageBlockSet, asset_path);
 					}
 					stageBlockSet.Clear();
-					
+
 					// Open Excel
 					IWorkbook book = new HSSFWorkbook(fs);
 					int sheetNum = book.NumberOfSheets;
 					for(int i=0; i<sheetNum; ++i)
-					{
+					{ 
 						ISheet sheet = book.GetSheetAt(i);
 						Debug.Log("Sheet:" + sheet.SheetName);
 						
 						int firstRow = sheet.FirstRowNum;
 						int lastRow = sheet.LastRowNum;
-						
+						for(int j=0; j<UnityEditorInternal.InternalEditorUtility.tags.Length ; j++) {
+							Debug.Log("id: " + j + "name:" + UnityEditorInternal.InternalEditorUtility.tags[j]);
+						}
+
 						for(int rowIdx=firstRow; rowIdx<=lastRow; ++rowIdx)
 						{
 							IRow row = sheet.GetRow(rowIdx);
@@ -57,37 +60,17 @@ public class ExcelImporter : AssetPostprocessor {
 							for(int cellIdx=firstCell; cellIdx<=lastCell; ++cellIdx)
 							{
 								ICell cell = row.GetCell(cellIdx);
-								if(cell == null ){ continue;}
-								Debug.Log(cell.NumericCellValue);
+								if(cell == null){ continue;}
+								if(cell.NumericCellValue < 1) {continue;}
 								Debug.Log(rowIdx);
-								if(cell.NumericCellValue == 1){
-									StageBlock stageBlock = new StageBlock();
-									stageBlock.name = "Normal";
-									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
-									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock, cellIdx);
-								}
-								if(cell.NumericCellValue == 2){
-									StageBlock stageBlock = new StageBlock();
-									stageBlock.name = "Item1";
-									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
-									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock, cellIdx);
-								}
-								if(cell.NumericCellValue == 3){
-									StageBlock stageBlock = new StageBlock();
-									stageBlock.name = "Block";
-									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
-									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock, cellIdx);
-								}
-								if(cell.NumericCellValue == 4){
-									StageBlock stageBlock = new StageBlock();
-									stageBlock.name = "Enemy1";
-									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
-									stageBlockSet.Add(stageBlock);
-									CreateOrUpdateObject(stageBlock, cellIdx);
-								}
+								Debug.Log(cellIdx);
+								int cellNum = (int)cell.NumericCellValue + 7; //   self defined tag numbers start from 7
+								Debug.Log("cellNum : " + cellNum);
+								StageBlock stageBlock = new StageBlock();
+								stageBlock.name = UnityEditorInternal.InternalEditorUtility.tags[cellNum];
+								stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+								stageBlockSet.Add(stageBlock);
+								CreateOrUpdateObject(stageBlock, cellIdx);
 							}
 						}
 					}
@@ -114,16 +97,16 @@ public class ExcelImporter : AssetPostprocessor {
 		GameObject objRoot = GameObject.Find("GameField");
 		if(objRoot == null){ return; }
 		Debug.Log("Prefabs/"+_data.name);
-		if(cellIdx % 2 == 0 && (_data.name == "Block" || _data.name == "Normal")){
-			 _data.name = _data.name + "2";
-		}
+
 		GameObject objStageBlock = (GameObject)Object.Instantiate(Resources.Load("Prefabs/"+_data.name));
-		if(objStageBlock.gameObject.tag == "Block") {
+		if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Ground")) {
 			objRoot = GameObject.Find("Floor");
-		}else if(objStageBlock.gameObject.tag == "Item") {
-			objRoot = GameObject.Find("Items");
-		}else if(objStageBlock.gameObject.tag == "Enemy"){
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Food")) {
+			objRoot = GameObject.Find("Foods");
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Enemy")){
 			objRoot = GameObject.Find("Enemies");
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Bomb")){
+			objRoot = GameObject.Find("Bombs");
 		}
 		
 		if(objStageBlock == null)
@@ -134,4 +117,5 @@ public class ExcelImporter : AssetPostprocessor {
 		objStageBlock.transform.parent = objRoot.transform;
 		objStageBlock.transform.position = new Vector3(_data.position.x, _data.position.y, _data.position.z);
 	}
+
 }

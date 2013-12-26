@@ -3,9 +3,73 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - Item
-  - Block
-  - Enemy
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Player5
+  - Player6
+  - Player7
+  - Food1
+  - Food2
+  - Food3
+  - Food4
+  - Food5
+  - Food6
+  - Food7
+  - Food8
+  - Food9
+  - Food10
+  - Enemy1
+  - Enemy2
+  - Enemy3
+  - Enemy4
+  - Enemy5
+  - Enemy6
+  - Enemy7
+  - Enemy8
+  - Enemy9
+  - Enemy10
+  - Item1
+  - Item2
+  - Item3
+  - Item4
+  - Item5
+  - Item6
+  - Item7
+  - Item8
+  - Item9
+  - Item10
+  - Bomb1
+  - Bomb2
+  - Bomb3
+  - Bomb4
+  - Bomb5
+  - Bomb6
+  - Bomb7
+  - Bomb8
+  - Bomb9
+  - Bomb10
+  - Block1
+  - Block2
+  - Block3
+  - Block4
+  - Block5
+  - Block6
+  - Block7
+  - Block8
+  - Block9
+  - Block10
+  - Block11
+  - Block12
+  - Block13
+  - Block14
+  - Block15
+  - Block16
+  - Block17
+  - Block18
+  - Block19
+  - Block20
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -16,11 +80,11 @@ TagManager:
   Builtin Layer 6: 
   Builtin Layer 7: 
   User Layer 8: Player
-  User Layer 9: PlayerOnBlock
-  User Layer 10: Block
-  User Layer 11: Ground
-  User Layer 12: 
-  User Layer 13: 
+  User Layer 9: Ground
+  User Layer 10: Food
+  User Layer 11: Enemy
+  User Layer 12: Bomb
+  User Layer 13: Item
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 
