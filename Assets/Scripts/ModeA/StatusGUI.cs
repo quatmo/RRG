@@ -19,7 +19,7 @@ public class StatusGUI : MonoBehaviour {
 
 		//draw life
 		GUILayout.BeginArea(new Rect(0,  0,  100, 50));
-		GUILayout.Label("LIFE : " + Status.GetLife(), textStyle);
+		GUILayout.Label("LIFE:" + Status.GetLife(), textStyle);
 		GUILayout.EndArea();
 
 		if(Status.IsGameOver()) {

@@ -57,6 +57,13 @@ public class PlayerScript : MonoBehaviour {
 			Food food = other.gameObject.GetComponent<Food>();
 			Score.add(food.score);
 		}
+		if(other.gameObject.layer ==  LayerMask.NameToLayer("WeakPoint"))
+		{
+			Destroy(other.gameObject.transform.parent.gameObject);
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+			rigidbody2D.AddForce(new Vector2(0f, jumpForce / 2));
+			jump = false;
+		}
 		if(other.gameObject.layer ==  LayerMask.NameToLayer("Enemy"))
 		{
 			Destroy(other.gameObject);
