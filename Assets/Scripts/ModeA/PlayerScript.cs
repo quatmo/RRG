@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour {
 	public float m_runningSpeed = 5.0f;
 	public float runningSpeed {get {return m_runningSpeed;} set{m_runningSpeed = value;}}
 
-	private GameMode newGame;
 	private Transform groundCheck;
 	private Animator anim;
 	private bool grounded = false;
@@ -20,7 +19,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	void Start()
 	{
-		newGame = GameObject.Find("GameMode").GetComponent<GameMode>();
+		Status.NewGame();
 	}
 
 	void Update()
@@ -30,9 +29,7 @@ public class PlayerScript : MonoBehaviour {
 		{
 			jump = true;
 		}
-		if(transform.position.y < -2) {
-			newGame.SendMessage("FalledDie");
-		}
+
 	}
 
 	void FixedUpdate()
@@ -57,16 +54,22 @@ public class PlayerScript : MonoBehaviour {
 		if(other.gameObject.layer ==  LayerMask.NameToLayer("Food"))
 		{
 			Destroy(other.gameObject);
+			Food food = other.gameObject.GetComponent<Food>();
+			Score.add(food.score);
 		}
 		if(other.gameObject.layer ==  LayerMask.NameToLayer("Enemy"))
 		{
 			Destroy(other.gameObject);
-			newGame.SendMessage("Damaged");
+			Status.Damaged();
 		}
 		if(other.gameObject.layer ==  LayerMask.NameToLayer("Bomb"))
 		{
 			Destroy(other.gameObject);
-			newGame.SendMessage("Damaged");
+			Status.Damaged();
+		}
+		if(other.gameObject.layer ==  LayerMask.NameToLayer("EndPoint"))
+		{
+			Status.FalledDie();
 		}
 	}
 

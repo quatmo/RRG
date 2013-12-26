@@ -61,16 +61,24 @@ public class ExcelImporter : AssetPostprocessor {
 							{
 								ICell cell = row.GetCell(cellIdx);
 								if(cell == null){ continue;}
-								if(cell.NumericCellValue < 1) {continue;}
-								Debug.Log(rowIdx);
-								Debug.Log(cellIdx);
-								int cellNum = (int)cell.NumericCellValue + 7; //   self defined tag numbers start from 7
-								Debug.Log("cellNum : " + cellNum);
-								StageBlock stageBlock = new StageBlock();
-								stageBlock.name = UnityEditorInternal.InternalEditorUtility.tags[cellNum];
-								stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
-								stageBlockSet.Add(stageBlock);
-								CreateOrUpdateObject(stageBlock, cellIdx);
+								if(cell.NumericCellValue == -1) {
+									StageBlock stageBlock = new StageBlock();
+									stageBlock.name = "EndPoint";
+									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+									stageBlockSet.Add(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx); 
+								}else{
+ 									if(cell.NumericCellValue < 1) {continue;}
+									Debug.Log(rowIdx);
+									Debug.Log(cellIdx);
+									int cellNum = (int)cell.NumericCellValue + 7; //   self defined tag numbers start from 7
+									Debug.Log("cellNum : " + cellNum);
+									StageBlock stageBlock = new StageBlock();
+									 stageBlock.name = UnityEditorInternal.InternalEditorUtility.tags[cellNum];
+									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+									stageBlockSet.Add(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx);
+								}
 							}
 						}
 					}
@@ -107,8 +115,10 @@ public class ExcelImporter : AssetPostprocessor {
 			objRoot = GameObject.Find("Enemies");
 		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Bomb")){
 			objRoot = GameObject.Find("Bombs");
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("EndPoint")){
+			objRoot = GameObject.Find("EndPoints");
 		}
-		
+
 		if(objStageBlock == null)
 		{
 			objStageBlock = GameObject.CreatePrimitive(PrimitiveType.Cube);
