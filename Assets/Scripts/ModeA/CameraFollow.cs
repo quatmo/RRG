@@ -36,13 +36,13 @@ public class CameraFollow : MonoBehaviour {
 //		{
 //			targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
 //		}
-		targetX = player.position.x + 2.73555f;
-		if(CheckYMargin())
-		{
-			targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
-		}else{
-			targetY = Mathf.Lerp(transform.position.y, player.position.y + 2, ySmooth * Time.deltaTime);
-		}
+		targetX = player.position.x + 5.5f;
+//		if(CheckYMargin())
+//		{
+//			targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
+//		}else{
+//			targetY = Mathf.Lerp(transform.position.y, player.position.y + 2, ySmooth * Time.deltaTime);
+//		}
 
 		transform.position = new Vector3(targetX, targetY, transform.position.z);
 	}
