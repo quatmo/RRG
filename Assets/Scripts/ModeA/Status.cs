@@ -47,6 +47,7 @@ public static class Status{
 	static public void NewGame() {
 		life = initLife;
 		isGameOver = false;
+		isGameClear = false;
 		Time.timeScale = 1;
 	}
 }
