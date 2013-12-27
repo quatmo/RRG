@@ -43,6 +43,7 @@ public class PlayerScript : MonoBehaviour {
 		if(Input.GetButtonDown("Jump") && !grounded && playerType == LayerMask.NameToLayer("Player1") && isSecondJumpActive)
 		{
 			secondJump = true;
+			isSecondJumpActive = false;
 		}
 	}
 
@@ -119,6 +120,7 @@ public class PlayerScript : MonoBehaviour {
 
 
 	public void ToPlayer() {
+		isSecondJumpActive = false;
 		ChangeLayer("Player");
 		Transform body = transform.FindChild("body");
 		body.renderer.material.color = Color.white;
