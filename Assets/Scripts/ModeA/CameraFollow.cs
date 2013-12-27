@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void Awake ()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		player = PlayerScript.GetPlayer().transform;
 	}
 
 	bool CheckXMargin ()
