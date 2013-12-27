@@ -15,10 +15,13 @@ public class ExcelImporter : AssetPostprocessor {
 			string[] movedAssets, 
 			string[] movedFromAssetPaths)
 	{
+
+
 		foreach (string file in importedAssets) 
 		{			
 			if (file.EndsWith(".xls"))
 			{
+				ClearGameField();
 				Debug.Log("FilePath:"+file);
 				
 				string asset_path = "Assets/Data/" + Path.GetFileNameWithoutExtension(file) + ".asset";
@@ -135,6 +138,15 @@ public class ExcelImporter : AssetPostprocessor {
 		}
 		objStageBlock.transform.parent = objRoot.transform;
 		objStageBlock.transform.position = new Vector3(_data.position.x, _data.position.y, _data.position.z);
+	}
+
+	static private void ClearGameField() {
+		GameObject gameField = GameObject.Find("GameField");
+		foreach(Transform child in gameField.transform) {
+			foreach(Transform go in child.gameObject.transform) {
+				GameObject.DestroyImmediate(go.gameObject);
+			}
+		}
 	}
 
 }
