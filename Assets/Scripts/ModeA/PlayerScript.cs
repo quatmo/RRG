@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour {
 	private Animator anim;
 	private bool grounded = false;
 
-
 	#region static members
 	private static int playerType;
 	public static GameObject player;
@@ -55,20 +54,12 @@ public class PlayerScript : MonoBehaviour {
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
 		}
-		else
-		{
-			anim.SetBool("Jump", false);
-		}
 		if(secondJump)
 		{
 			anim.SetTrigger("Jump");
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
 			rigidbody2D.AddForce(new Vector2(0f, 2 * jumpForce/3));
 			secondJump= false;
-		}
-		else
-		{
-			anim.SetBool("Jump", false);
 		}
 		rigidbody2D.velocity = new Vector2(runningSpeed,  rigidbody2D.velocity.y);
 
@@ -84,6 +75,7 @@ public class PlayerScript : MonoBehaviour {
 		}else if(layerNum ==  LayerMask.NameToLayer("WeakPoint")) {
 
 			Destroy(other.gameObject.transform.parent.gameObject);
+			anim.SetTrigger("Jump");
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce / 2));
 			jump = false;
