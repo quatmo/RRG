@@ -67,6 +67,12 @@ public class ExcelImporter : AssetPostprocessor {
 									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
 									stageBlockSet.Add(stageBlock);
 									CreateOrUpdateObject(stageBlock, cellIdx); 
+								}else if(cell.NumericCellValue == -2) {
+									StageBlock stageBlock = new StageBlock();
+									stageBlock.name = "Goal";
+									stageBlock.position = new Vector3((float) cellIdx-5, (float) 14 - rowIdx,0);
+									stageBlockSet.Add(stageBlock);
+									CreateOrUpdateObject(stageBlock, cellIdx); 
 								}else{
  									if(cell.NumericCellValue < 1) {continue;}
 									int cellNum = (int)cell.NumericCellValue ; 
@@ -118,6 +124,8 @@ public class ExcelImporter : AssetPostprocessor {
 			objRoot = GameObject.Find("Items");
 		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("EndPoint")){
 			objRoot = GameObject.Find("EndPoints");
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Goal")){
+			objRoot = GameObject.Find("Goals");
 		}
 
 		if(objStageBlock == null)

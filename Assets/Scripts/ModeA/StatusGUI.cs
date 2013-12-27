@@ -23,7 +23,24 @@ public class StatusGUI : MonoBehaviour {
 		GUILayout.EndArea();
 
 		if(Status.IsGameOver()) {
-			GUI.Label(new Rect(100, 100, 200, 40), "TOUCH to RESTART");
+			textStyle.normal.textColor = Color.red;
+			GUILayout.BeginArea(new Rect(Screen.width / 2 - 250,  Screen.height / 2,  500, 50));
+			GUILayout.Label("TOUCH TO RESTART", textStyle);
+			GUILayout.EndArea();
+			if(Input.GetMouseButtonDown(0))
+			{
+				Application.LoadLevel("ModeA");
+			}
+		}
+		if(Status.IsGameClear()) {
+			textStyle.normal.textColor = Color.red;
+			GUILayout.BeginArea(new Rect(Screen.width / 2 - 250,  Screen.height / 2,  500, 50));
+			GUILayout.Label("TOUCH TO RESTART", textStyle);
+			GUILayout.EndArea();
+			textStyle.normal.textColor = Color.yellow;
+			GUILayout.BeginArea(new Rect(Screen.width / 2 - 250,  Screen.height / 2 - 50,  500, 50));
+			GUILayout.Label("GAME CLEAR", textStyle);
+			GUILayout.EndArea();
 			if(Input.GetMouseButtonDown(0))
 			{
 				Application.LoadLevel("ModeA");

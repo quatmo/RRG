@@ -18,6 +18,8 @@ MonoBehaviour:
     position: {x: 30, y: 3, z: 0}
   - name: Food1
     position: {x: 85, y: 3, z: 0}
+  - name: Item1
+    position: {x: 8, y: 2, z: 0}
   - name: Food1
     position: {x: 11, y: 2, z: 0}
   - name: Food1
@@ -46,6 +48,8 @@ MonoBehaviour:
     position: {x: 12, y: 1, z: 0}
   - name: Bomb1
     position: {x: 16, y: 1, z: 0}
+  - name: Item2
+    position: {x: 25, y: 1, z: 0}
   - name: Block1
     position: {x: 29, y: 1, z: 0}
   - name: Block2

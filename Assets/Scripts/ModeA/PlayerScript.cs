@@ -111,6 +111,9 @@ public class PlayerScript : MonoBehaviour {
 
 			Status.FalledDie();
 
+		}else if(layerNum ==  LayerMask.NameToLayer("Goal")) {
+			Status.GameClear();
+
 		}
 	}
 
