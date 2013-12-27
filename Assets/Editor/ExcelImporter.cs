@@ -69,9 +69,8 @@ public class ExcelImporter : AssetPostprocessor {
 									CreateOrUpdateObject(stageBlock, cellIdx); 
 								}else{
  									if(cell.NumericCellValue < 1) {continue;}
-									Debug.Log(rowIdx);
-									Debug.Log(cellIdx);
-									int cellNum = (int)cell.NumericCellValue + 7; //   self defined tag numbers start from 7
+									int cellNum = (int)cell.NumericCellValue ; 
+									Debug.Log("X :" + cellIdx + " Y : " + rowIdx);
 									Debug.Log("cellNum : " + cellNum);
 									StageBlock stageBlock = new StageBlock();
 									 stageBlock.name = UnityEditorInternal.InternalEditorUtility.tags[cellNum];
@@ -115,6 +114,8 @@ public class ExcelImporter : AssetPostprocessor {
 			objRoot = GameObject.Find("Enemies");
 		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Bomb")){
 			objRoot = GameObject.Find("Bombs");
+		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("Item")){
+			objRoot = GameObject.Find("Items");
 		}else if(objStageBlock.gameObject.layer == LayerMask.NameToLayer("EndPoint")){
 			objRoot = GameObject.Find("EndPoints");
 		}

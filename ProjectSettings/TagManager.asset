@@ -3,13 +3,13 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - Player1
-  - Player2
-  - Player3
-  - Player4
-  - Player5
-  - Player6
-  - Player7
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - Food1
   - Food2
   - Food3
@@ -87,8 +87,8 @@ TagManager:
   User Layer 13: Item
   User Layer 14: EndPoint
   User Layer 15: WeakPoint
-  User Layer 16: 
-  User Layer 17: 
+  User Layer 16: Player1
+  User Layer 17: Player2
   User Layer 18: 
   User Layer 19: 
   User Layer 20: 

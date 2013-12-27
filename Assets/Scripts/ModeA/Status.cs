@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class Status {
+public static class Status{
 	static int life = 3;
 	static int initLife = 3;
 	static bool isGameOver = false;
@@ -39,5 +39,4 @@ public static class Status {
 		isGameOver = false;
 		Time.timeScale = 1;
 	}
-	
 }
