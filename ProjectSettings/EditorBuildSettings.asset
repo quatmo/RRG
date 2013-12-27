@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
   - enabled: 1
     path: Assets/Scenes/ModeA.unity
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity

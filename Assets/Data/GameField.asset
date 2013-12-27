@@ -10,7 +10,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03b4b000a04904c75a8e9cfa90b0223d, type: 3}
   m_Name: GameField
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   list:
   - name: Goal
     position: {x: 109, y: 14, z: 0}

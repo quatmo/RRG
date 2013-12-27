@@ -4,9 +4,10 @@ using System.Collections;
 public class Title : MonoBehaviour {
 
 	void Update () {
-		if(Input.GetMouseButtonDown(0))
-		{
-			Application.LoadLevel("ModeSelect");
+    if (PlayerPrefs.HasKey("UserName")) {
+      Application.LoadLevel("ModeSelect");
+    }else{
+			Application.LoadLevel("Tutorial");
 		}
 	}
 }
